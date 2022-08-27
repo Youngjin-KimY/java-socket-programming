@@ -12,7 +12,7 @@ public class EchoThreadServer {
             while(true) {
                 Socket sock = server.accept();
                 EchoThread echoThread = new EchoThread(sock);
-                echoThread.run();
+                echoThread.start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,7 +41,7 @@ class EchoThread extends Thread {
             while((line = br.readLine()) != null) {
                 System.out.println("클라이언트로부터 전송받은 문자열 : " + line);
                 pw.println(line);
-                pw.close();
+                pw.flush();
             }
             pw.close();
             br.close();
