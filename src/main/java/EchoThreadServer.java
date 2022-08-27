@@ -12,6 +12,7 @@ public class EchoThreadServer {
             while(true) {
                 Socket sock = server.accept();
                 EchoThread echoThread = new EchoThread(sock);
+                echoThread.run();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
